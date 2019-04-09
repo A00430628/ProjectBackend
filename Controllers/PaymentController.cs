@@ -15,10 +15,18 @@ namespace DotNetProjectBackEnd.Controllers
     [Route("api/[controller]")]
     public class PaymentController : Controller
     {
-        private IDataPayment<Payment, double> _iPayRepo;
-        public PaymentController(IDataPayment<Payment, double> repo)
+        private IDataPayment<Payment, long> _iPayRepo;
+        public PaymentController(IDataPayment<Payment, long> repo)
         {
             _iPayRepo = repo;
+        }
+
+        // GET: api/values
+        [HttpGet]
+        [Authorize]
+        public IEnumerable<Payment> Get()
+        {
+            return _iPayRepo.GetAll();
         }
 
 
