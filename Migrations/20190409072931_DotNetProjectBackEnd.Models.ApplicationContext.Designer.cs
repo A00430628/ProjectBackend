@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetProjectBackEnd.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190409042331_DotNetProjectBackEnd.Models.ApplicationContext")]
+    [Migration("20190409072931_DotNetProjectBackEnd.Models.ApplicationContext")]
     partial class DotNetProjectBackEndModelsApplicationContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,7 +50,7 @@ namespace DotNetProjectBackEnd.Migrations
 
                     b.Property<long>("Customer_ID");
 
-                    b.Property<long?>("GuestId");
+                    b.Property<long>("Guest_ID");
 
                     b.Property<int>("No_Of_Persons");
 
@@ -67,8 +67,6 @@ namespace DotNetProjectBackEnd.Migrations
                     b.Property<double>("Total_Price");
 
                     b.HasKey("Booking_Id");
-
-                    b.HasIndex("GuestId");
 
                     b.ToTable("Booking");
                 });
@@ -241,13 +239,6 @@ namespace DotNetProjectBackEnd.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Traveller");
-                });
-
-            modelBuilder.Entity("DotNetProjectBackEnd.Models.Booking", b =>
-                {
-                    b.HasOne("DotNetProjectBackEnd.Models.Traveller", "Guest")
-                        .WithMany()
-                        .HasForeignKey("GuestId");
                 });
 #pragma warning restore 612, 618
         }

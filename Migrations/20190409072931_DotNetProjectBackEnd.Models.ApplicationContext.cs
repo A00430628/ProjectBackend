@@ -23,6 +23,30 @@ namespace DotNetProjectBackEnd.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Booking",
+                columns: table => new
+                {
+                    Booking_Id = table.Column<long>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Customer_ID = table.Column<long>(nullable: false),
+                    Room_Type = table.Column<int>(nullable: false),
+                    Price = table.Column<double>(nullable: false),
+                    Check_In_Date = table.Column<DateTime>(nullable: false),
+                    Check_Out_Date = table.Column<DateTime>(nullable: false),
+                    Guest_ID = table.Column<long>(nullable: false),
+                    No_Of_Persons = table.Column<int>(nullable: false),
+                    No_Of_Rooms = table.Column<int>(nullable: false),
+                    PromoID = table.Column<int>(nullable: false),
+                    Total_Price = table.Column<double>(nullable: false),
+                    Refundable = table.Column<int>(nullable: false),
+                    BookingDate = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Booking", x => x.Booking_Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Customers",
                 columns: table => new
                 {
@@ -158,41 +182,6 @@ namespace DotNetProjectBackEnd.Migrations
                 {
                     table.PrimaryKey("PK_Traveller", x => x.Id);
                 });
-
-            migrationBuilder.CreateTable(
-                name: "Booking",
-                columns: table => new
-                {
-                    Booking_Id = table.Column<long>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Customer_ID = table.Column<long>(nullable: false),
-                    Room_Type = table.Column<int>(nullable: false),
-                    Price = table.Column<double>(nullable: false),
-                    Check_In_Date = table.Column<DateTime>(nullable: false),
-                    Check_Out_Date = table.Column<DateTime>(nullable: false),
-                    GuestId = table.Column<long>(nullable: true),
-                    No_Of_Persons = table.Column<int>(nullable: false),
-                    No_Of_Rooms = table.Column<int>(nullable: false),
-                    PromoID = table.Column<int>(nullable: false),
-                    Total_Price = table.Column<double>(nullable: false),
-                    Refundable = table.Column<int>(nullable: false),
-                    BookingDate = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Booking", x => x.Booking_Id);
-                    table.ForeignKey(
-                        name: "FK_Booking_Traveller_GuestId",
-                        column: x => x.GuestId,
-                        principalTable: "Traveller",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
-                });
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Booking_GuestId",
-                table: "Booking",
-                column: "GuestId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

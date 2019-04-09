@@ -14,7 +14,7 @@ namespace DotNetProjectBackEnd.Models
         public double Price  { get; set; }
         public DateTime Check_In_Date { get; set; }
         public DateTime Check_Out_Date { get; set; }
-        public Traveller Guest { get; set; }
+        public long Guest_ID { get; set; }
         public int No_Of_Persons { get; set; }
         public int No_Of_Rooms { get; set; }
         public int PromoID { get; set; }
