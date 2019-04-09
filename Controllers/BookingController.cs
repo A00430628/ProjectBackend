@@ -38,6 +38,7 @@ namespace DotNetProjectBackEnd.Controllers
 
         // POST api/values
         [HttpPost]
+        [Authorize]
         public void Post([FromBody] Booking booking)
         {
             _iBookRepo.Add(booking);
