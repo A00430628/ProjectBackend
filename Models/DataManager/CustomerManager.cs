@@ -37,7 +37,13 @@ namespace DotNetProjectBackEnd.Models.DataManager
             if (customer != null)
             {
                 var tokenString = GenerateJSONWebToken(customer);
-                response = Ok(new { token = tokenString });
+
+                LoginResponse login = new LoginResponse();
+                login.CustomerId = customer.CustomerId;
+                login.TokenString = tokenString;
+
+                string jsonString = JsonHelper.JsonSerializer<LoginResponse>(login);
+                response = Ok(jsonString);
             }
 
             return response;
