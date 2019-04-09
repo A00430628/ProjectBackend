@@ -30,17 +30,21 @@ namespace DotNetProjectBackEnd.Models.DataManager
             return customer;
         }
 
-        public IActionResult CheckStatus(string email)
+        public IActionResult CheckStatus(string email, string password)
         {
             IActionResult response = Unauthorized();
-            var customer = ctx.Customers.FirstOrDefault(b => b.Email == email);
+            var customer = ctx.Customers.FirstOrDefault(b => (b.Email == email && b.Password == password) );
             if (customer != null)
             {
                 var tokenString = GenerateJSONWebToken(customer);
 
                 LoginResponse login = new LoginResponse();
                 login.CustomerId = customer.CustomerId;
+                login.CustomerName = customer.FirstName +" "+ customer.LastName;
                 login.TokenString = tokenString;
+                login.DateOfRegistration = customer.DateOfRegistration;
+                login.PhoneNumber = customer.PhoneNumber;
+                login.Email = customer.Email;
 
                 string jsonString = JsonHelper.JsonSerializer<LoginResponse>(login);
                 response = Ok(jsonString);

@@ -22,7 +22,7 @@ namespace DotNetProjectBackEnd.Controllers
         [HttpPost]
         public IActionResult Post([FromBody]Login login)
         {
-            return _iRepo.CheckStatus(login.Email);
+            return _iRepo.CheckStatus(login.Email, login.Password);
         }
     }
 }

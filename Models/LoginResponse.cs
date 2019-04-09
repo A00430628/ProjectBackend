@@ -9,5 +9,9 @@ namespace DotNetProjectBackEnd.Models
     {
         public string TokenString { get; set; }
         public long CustomerId { get; set; }
+        public string CustomerName { get; set; }
+        public DateTime? DateOfRegistration { get; set; }
+        public string PhoneNumber { get; set; }
+        public string Email { get; set; }
     }
 }

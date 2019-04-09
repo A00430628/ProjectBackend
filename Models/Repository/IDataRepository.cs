@@ -13,7 +13,7 @@ namespace DotNetProjectBackEnd.Models.Repository
         long Add(TEntity b);
         long Update(U id, TEntity b);
         long Delete(U id);
-        IActionResult CheckStatus(string email);
+        IActionResult CheckStatus(string email, string password);
         string GenerateJSONWebToken(TEntity b);
     }
 }
