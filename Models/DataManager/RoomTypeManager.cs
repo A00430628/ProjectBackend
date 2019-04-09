@@ -33,6 +33,7 @@ namespace DotNetProjectBackEnd.Models.DataManager
         public IEnumerable<RoomType> GetAll()
         {
             var Room = ctx.RoomType.ToList();
+               
             return Room;
         }
 

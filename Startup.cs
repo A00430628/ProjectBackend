@@ -17,6 +17,8 @@ using DotNetProjectBackEnd.Models.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Cors.Internal;
 
 namespace DotNetProjectBackEnd
 {
@@ -32,6 +34,17 @@ namespace DotNetProjectBackEnd
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.AllowCredentials();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("SiteCorsPolicy", corsBuilder.Build());
+            });
+
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -59,6 +72,11 @@ namespace DotNetProjectBackEnd
             services.AddScoped(typeof(IDataTraveller<Traveller, long>), typeof(TravellerManager));
             services.AddScoped(typeof(IDataOption<Option, long>), typeof(OptionsManager));
             services.AddMvc();
+
+            services.Configure<MvcOptions>(options =>
+            {
+                options.Filters.Add(new CorsAuthorizationFilterFactory("SiteCorsPolicy"));
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,7 +90,7 @@ namespace DotNetProjectBackEnd
             {
                 app.UseHsts();
             }
-
+            app.UseCors("SiteCorsPolicy");
             app.UseHttpsRedirection();
             app.UseAuthentication();
             app.UseMvc();
