@@ -52,6 +52,8 @@ namespace DotNetProjectBackEnd.Migrations
 
                     b.Property<int>("No_Of_Persons");
 
+                    b.Property<int>("No_Of_Rooms");
+
                     b.Property<double>("Price");
 
                     b.Property<int>("PromoID");

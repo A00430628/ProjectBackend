@@ -172,6 +172,7 @@ namespace DotNetProjectBackEnd.Migrations
                     Check_Out_Date = table.Column<DateTime>(nullable: false),
                     GuestId = table.Column<long>(nullable: true),
                     No_Of_Persons = table.Column<int>(nullable: false),
+                    No_Of_Rooms = table.Column<int>(nullable: false),
                     PromoID = table.Column<int>(nullable: false),
                     Total_Price = table.Column<double>(nullable: false),
                     Refundable = table.Column<int>(nullable: false),

@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DotNetProjectBackEnd.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20190408232951_DotNetProjectBackEnd.Models.ApplicationContext")]
+    [Migration("20190409042331_DotNetProjectBackEnd.Models.ApplicationContext")]
     partial class DotNetProjectBackEndModelsApplicationContext
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,6 +53,8 @@ namespace DotNetProjectBackEnd.Migrations
                     b.Property<long?>("GuestId");
 
                     b.Property<int>("No_Of_Persons");
+
+                    b.Property<int>("No_Of_Rooms");
 
                     b.Property<double>("Price");
 
